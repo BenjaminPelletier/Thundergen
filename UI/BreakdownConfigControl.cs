@@ -89,11 +89,26 @@ namespace Thundergen.UI
                     return null;
                 }
             }
+            set
+            {
+                if (value != null)
+                {
+                    txtInitialBreakdown.Text = value.Seeds[0].AsString();
+                    txtBiasHeight.Text = value.Biases[0].Height.ToString();
+                    txtBiasStrength.Text = value.Biases[0].FractionOfBolt.ToString();
+                    txtEta.Text = value.Eta.ToString();
+                    txtRandomSeed.Text = value.RandomSeed.ToString();
+                    txtGrowthPerIteration.Text = value.GrowthPerIteration.ToString();
+                    txtCullThreshold.Text = value.CullThreshold.ToString();
+                    txtCullLevel.Text = value.CullLevel.ToString();
+                    txtFractionToCullByCharge.Text = value.FractionToCullByCharge.ToString();
+                }
+            }
         }
 
         private void txtInput_ValidityChanged(object sender, ValidityChangedEventArgs e)
         {
-            
+            ValidityChanged?.Invoke(this, e);
         }
 
         private void txtInput_TextChanged(object sender, EventArgs e)

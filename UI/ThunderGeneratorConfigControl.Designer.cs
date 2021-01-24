@@ -29,25 +29,25 @@
         private void InitializeComponent()
         {
             this.label13 = new System.Windows.Forms.Label();
-            this.atmosphericConditions1 = new Thundergen.UI.AtmosphericConditionsControl();
             this.chkAttenuation = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.chkSteepen = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtSamplesPerStep = new Thundergen.UI.ValidatingTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtInitialDistance = new Thundergen.UI.ValidatingTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtInitialVolume = new Thundergen.UI.ValidatingTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cmdRandomFollowingStrokes = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtFollowingStrokes = new Thundergen.UI.ValidatingTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtObserver = new Thundergen.UI.ValidatingTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmdClearFollowingStrokes = new System.Windows.Forms.Button();
+            this.atmosphericConditions1 = new Thundergen.UI.AtmosphericConditionsControl();
+            this.txtSamplesPerStep = new Thundergen.UI.ValidatingTextBox();
+            this.txtInitialDistance = new Thundergen.UI.ValidatingTextBox();
+            this.txtInitialVolume = new Thundergen.UI.ValidatingTextBox();
+            this.txtFollowingStrokes = new Thundergen.UI.ValidatingTextBox();
+            this.txtObserver = new Thundergen.UI.ValidatingTextBox();
             this.SuspendLayout();
             // 
             // label13
@@ -59,16 +59,6 @@
             this.label13.TabIndex = 59;
             this.label13.Text = "Atmosphere";
             // 
-            // atmosphericConditions1
-            // 
-            this.atmosphericConditions1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.atmosphericConditions1.Location = new System.Drawing.Point(98, 181);
-            this.atmosphericConditions1.Name = "atmosphericConditions1";
-            this.atmosphericConditions1.Size = new System.Drawing.Size(223, 81);
-            this.atmosphericConditions1.TabIndex = 58;
-            this.atmosphericConditions1.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.Input_ValidityChanged);
-            // 
             // chkAttenuation
             // 
             this.chkAttenuation.AutoSize = true;
@@ -79,6 +69,7 @@
             this.chkAttenuation.Size = new System.Drawing.Size(15, 14);
             this.chkAttenuation.TabIndex = 57;
             this.chkAttenuation.UseVisualStyleBackColor = true;
+            this.chkAttenuation.CheckedChanged += new System.EventHandler(this.chkSteepen_CheckedChanged);
             // 
             // label12
             // 
@@ -99,6 +90,7 @@
             this.chkSteepen.Size = new System.Drawing.Size(15, 14);
             this.chkSteepen.TabIndex = 55;
             this.chkSteepen.UseVisualStyleBackColor = true;
+            this.chkSteepen.CheckedChanged += new System.EventHandler(this.chkSteepen_CheckedChanged);
             // 
             // label11
             // 
@@ -109,17 +101,6 @@
             this.label11.Size = new System.Drawing.Size(108, 13);
             this.label11.TabIndex = 54;
             this.label11.Text = "max samples per step";
-            // 
-            // txtSamplesPerStep
-            // 
-            this.txtSamplesPerStep.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSamplesPerStep.BackColor = System.Drawing.Color.White;
-            this.txtSamplesPerStep.Location = new System.Drawing.Point(120, 132);
-            this.txtSamplesPerStep.Name = "txtSamplesPerStep";
-            this.txtSamplesPerStep.Size = new System.Drawing.Size(87, 20);
-            this.txtSamplesPerStep.TabIndex = 53;
-            this.txtSamplesPerStep.Text = "0.5";
             // 
             // label10
             // 
@@ -140,17 +121,6 @@
             this.label9.TabIndex = 51;
             this.label9.Text = "meters";
             // 
-            // txtInitialDistance
-            // 
-            this.txtInitialDistance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInitialDistance.BackColor = System.Drawing.Color.White;
-            this.txtInitialDistance.Location = new System.Drawing.Point(209, 106);
-            this.txtInitialDistance.Name = "txtInitialDistance";
-            this.txtInitialDistance.Size = new System.Drawing.Size(68, 20);
-            this.txtInitialDistance.TabIndex = 50;
-            this.txtInitialDistance.Text = "10";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -159,15 +129,6 @@
             this.label7.Size = new System.Drawing.Size(55, 13);
             this.label7.TabIndex = 49;
             this.label7.Text = "dBSPL at ";
-            // 
-            // txtInitialVolume
-            // 
-            this.txtInitialVolume.BackColor = System.Drawing.Color.White;
-            this.txtInitialVolume.Location = new System.Drawing.Point(98, 106);
-            this.txtInitialVolume.Name = "txtInitialVolume";
-            this.txtInitialVolume.Size = new System.Drawing.Size(44, 20);
-            this.txtInitialVolume.TabIndex = 48;
-            this.txtInitialVolume.Text = "180";
             // 
             // label8
             // 
@@ -197,17 +158,6 @@
             this.label6.TabIndex = 45;
             this.label6.Text = "Following strokes";
             // 
-            // txtFollowingStrokes
-            // 
-            this.txtFollowingStrokes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFollowingStrokes.Location = new System.Drawing.Point(98, 29);
-            this.txtFollowingStrokes.Multiline = true;
-            this.txtFollowingStrokes.Name = "txtFollowingStrokes";
-            this.txtFollowingStrokes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtFollowingStrokes.Size = new System.Drawing.Size(223, 71);
-            this.txtFollowingStrokes.TabIndex = 44;
-            // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -217,17 +167,6 @@
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 43;
             this.label5.Text = "meters";
-            // 
-            // txtObserver
-            // 
-            this.txtObserver.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtObserver.BackColor = System.Drawing.Color.White;
-            this.txtObserver.Location = new System.Drawing.Point(98, 3);
-            this.txtObserver.Name = "txtObserver";
-            this.txtObserver.Size = new System.Drawing.Size(182, 20);
-            this.txtObserver.TabIndex = 39;
-            this.txtObserver.Text = "<300, 0, 0>";
             // 
             // label2
             // 
@@ -247,6 +186,75 @@
             this.cmdClearFollowingStrokes.Text = "Clear";
             this.cmdClearFollowingStrokes.UseVisualStyleBackColor = true;
             this.cmdClearFollowingStrokes.Click += new System.EventHandler(this.cmdClearFollowingStrokes_Click);
+            // 
+            // atmosphericConditions1
+            // 
+            this.atmosphericConditions1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.atmosphericConditions1.Location = new System.Drawing.Point(98, 181);
+            this.atmosphericConditions1.Name = "atmosphericConditions1";
+            this.atmosphericConditions1.Size = new System.Drawing.Size(223, 81);
+            this.atmosphericConditions1.TabIndex = 58;
+            this.atmosphericConditions1.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.Input_ValidityChanged);
+            this.atmosphericConditions1.ValueChanged += new System.EventHandler(this.atmosphericConditions1_ValueChanged);
+            // 
+            // txtSamplesPerStep
+            // 
+            this.txtSamplesPerStep.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSamplesPerStep.BackColor = System.Drawing.Color.White;
+            this.txtSamplesPerStep.Location = new System.Drawing.Point(120, 132);
+            this.txtSamplesPerStep.Name = "txtSamplesPerStep";
+            this.txtSamplesPerStep.Size = new System.Drawing.Size(87, 20);
+            this.txtSamplesPerStep.TabIndex = 53;
+            this.txtSamplesPerStep.Text = "0.5";
+            this.txtSamplesPerStep.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
+            // 
+            // txtInitialDistance
+            // 
+            this.txtInitialDistance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInitialDistance.BackColor = System.Drawing.Color.White;
+            this.txtInitialDistance.Location = new System.Drawing.Point(209, 106);
+            this.txtInitialDistance.Name = "txtInitialDistance";
+            this.txtInitialDistance.Size = new System.Drawing.Size(68, 20);
+            this.txtInitialDistance.TabIndex = 50;
+            this.txtInitialDistance.Text = "10";
+            this.txtInitialDistance.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
+            // 
+            // txtInitialVolume
+            // 
+            this.txtInitialVolume.BackColor = System.Drawing.Color.White;
+            this.txtInitialVolume.Location = new System.Drawing.Point(98, 106);
+            this.txtInitialVolume.Name = "txtInitialVolume";
+            this.txtInitialVolume.Size = new System.Drawing.Size(44, 20);
+            this.txtInitialVolume.TabIndex = 48;
+            this.txtInitialVolume.Text = "180";
+            this.txtInitialVolume.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
+            // 
+            // txtFollowingStrokes
+            // 
+            this.txtFollowingStrokes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFollowingStrokes.Location = new System.Drawing.Point(98, 29);
+            this.txtFollowingStrokes.Multiline = true;
+            this.txtFollowingStrokes.Name = "txtFollowingStrokes";
+            this.txtFollowingStrokes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtFollowingStrokes.Size = new System.Drawing.Size(223, 71);
+            this.txtFollowingStrokes.TabIndex = 44;
+            this.txtFollowingStrokes.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
+            // 
+            // txtObserver
+            // 
+            this.txtObserver.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtObserver.BackColor = System.Drawing.Color.White;
+            this.txtObserver.Location = new System.Drawing.Point(98, 3);
+            this.txtObserver.Name = "txtObserver";
+            this.txtObserver.Size = new System.Drawing.Size(182, 20);
+            this.txtObserver.TabIndex = 39;
+            this.txtObserver.Text = "<300, 0, 0>";
+            this.txtObserver.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
             // 
             // ThunderGeneratorConfigControl
             // 

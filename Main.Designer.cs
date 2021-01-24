@@ -30,21 +30,29 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            Thundergen.Thunder.Generator.Config config1 = new Thundergen.Thunder.Generator.Config();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssbVisualize = new System.Windows.Forms.ToolStripSplitButton();
             this.alwaysVisualizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssbOpenThunder = new System.Windows.Forms.ToolStripSplitButton();
+            this.openfolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openWAVFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdMakeThunder = new System.Windows.Forms.Button();
             this.gbBolt = new System.Windows.Forms.GroupBox();
+            this.boltControl1 = new Thundergen.UI.BoltControl();
             this.gbThunder = new System.Windows.Forms.GroupBox();
+            this.thunderGeneratorConfig1 = new Thundergen.UI.ThunderGeneratorConfigControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cmdExport = new System.Windows.Forms.Button();
+            this.cmdImport = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.boltControl1 = new Thundergen.UI.BoltControl();
-            this.thunderGeneratorConfig1 = new Thundergen.UI.ThunderGeneratorConfigControl();
+            this.ofdThunder = new System.Windows.Forms.OpenFileDialog();
+            this.sfdThunder = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.gbBolt.SuspendLayout();
@@ -72,7 +80,8 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tssbVisualize,
-            this.tsslStatus});
+            this.tsslStatus,
+            this.tssbOpenThunder});
             this.statusStrip1.Location = new System.Drawing.Point(0, 973);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1528, 22);
@@ -106,6 +115,34 @@
             this.tsslStatus.Size = new System.Drawing.Size(105, 17);
             this.tsslStatus.Text = "Ready to generate.";
             // 
+            // tssbOpenThunder
+            // 
+            this.tssbOpenThunder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tssbOpenThunder.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openfolderToolStripMenuItem,
+            this.openWAVFileToolStripMenuItem});
+            this.tssbOpenThunder.Image = ((System.Drawing.Image)(resources.GetObject("tssbOpenThunder.Image")));
+            this.tssbOpenThunder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tssbOpenThunder.Name = "tssbOpenThunder";
+            this.tssbOpenThunder.Size = new System.Drawing.Size(32, 20);
+            this.tssbOpenThunder.Text = "Thunder player";
+            this.tssbOpenThunder.Visible = false;
+            this.tssbOpenThunder.ButtonClick += new System.EventHandler(this.tssbOpenThunder_ButtonClick);
+            // 
+            // openfolderToolStripMenuItem
+            // 
+            this.openfolderToolStripMenuItem.Name = "openfolderToolStripMenuItem";
+            this.openfolderToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.openfolderToolStripMenuItem.Text = "Open &folder";
+            this.openfolderToolStripMenuItem.Click += new System.EventHandler(this.openfolderToolStripMenuItem_Click);
+            // 
+            // openWAVFileToolStripMenuItem
+            // 
+            this.openWAVFileToolStripMenuItem.Name = "openWAVFileToolStripMenuItem";
+            this.openWAVFileToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.openWAVFileToolStripMenuItem.Text = "Open &WAV file";
+            this.openWAVFileToolStripMenuItem.Click += new System.EventHandler(this.openWAVFileToolStripMenuItem_Click);
+            // 
             // cmdMakeThunder
             // 
             this.cmdMakeThunder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -129,6 +166,18 @@
             this.gbBolt.TabStop = false;
             this.gbBolt.Text = "Lightning";
             // 
+            // boltControl1
+            // 
+            this.boltControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.boltControl1.Location = new System.Drawing.Point(6, 19);
+            this.boltControl1.Name = "boltControl1";
+            this.boltControl1.Size = new System.Drawing.Size(364, 418);
+            this.boltControl1.TabIndex = 0;
+            this.boltControl1.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.Input_ValidityChanged);
+            this.boltControl1.CacheChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.boltControl1_CacheChanged);
+            // 
             // gbThunder
             // 
             this.gbThunder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -136,10 +185,22 @@
             this.gbThunder.Controls.Add(this.thunderGeneratorConfig1);
             this.gbThunder.Location = new System.Drawing.Point(3, 453);
             this.gbThunder.Name = "gbThunder";
-            this.gbThunder.Size = new System.Drawing.Size(377, 309);
+            this.gbThunder.Size = new System.Drawing.Size(377, 283);
             this.gbThunder.TabIndex = 12;
             this.gbThunder.TabStop = false;
             this.gbThunder.Text = "Thunder";
+            // 
+            // thunderGeneratorConfig1
+            // 
+            this.thunderGeneratorConfig1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.thunderGeneratorConfig1.Config = config1;
+            this.thunderGeneratorConfig1.Location = new System.Drawing.Point(6, 19);
+            this.thunderGeneratorConfig1.Name = "thunderGeneratorConfig1";
+            this.thunderGeneratorConfig1.Size = new System.Drawing.Size(365, 258);
+            this.thunderGeneratorConfig1.TabIndex = 11;
+            this.thunderGeneratorConfig1.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.Input_ValidityChanged);
             // 
             // splitContainer1
             // 
@@ -155,12 +216,37 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.cmdExport);
+            this.splitContainer1.Panel2.Controls.Add(this.cmdImport);
             this.splitContainer1.Panel2.Controls.Add(this.gbBolt);
             this.splitContainer1.Panel2.Controls.Add(this.cmdMakeThunder);
             this.splitContainer1.Panel2.Controls.Add(this.gbThunder);
             this.splitContainer1.Size = new System.Drawing.Size(1504, 943);
             this.splitContainer1.SplitterDistance = 1117;
             this.splitContainer1.TabIndex = 13;
+            // 
+            // cmdExport
+            // 
+            this.cmdExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdExport.Enabled = false;
+            this.cmdExport.Location = new System.Drawing.Point(69, 917);
+            this.cmdExport.Name = "cmdExport";
+            this.cmdExport.Size = new System.Drawing.Size(60, 23);
+            this.cmdExport.TabIndex = 14;
+            this.cmdExport.Text = "Export";
+            this.cmdExport.UseVisualStyleBackColor = true;
+            this.cmdExport.Click += new System.EventHandler(this.cmdExport_Click);
+            // 
+            // cmdImport
+            // 
+            this.cmdImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdImport.Location = new System.Drawing.Point(3, 917);
+            this.cmdImport.Name = "cmdImport";
+            this.cmdImport.Size = new System.Drawing.Size(60, 23);
+            this.cmdImport.TabIndex = 13;
+            this.cmdImport.Text = "Import";
+            this.cmdImport.UseVisualStyleBackColor = true;
+            this.cmdImport.Click += new System.EventHandler(this.cmdImport_Click);
             // 
             // menuStrip1
             // 
@@ -187,27 +273,18 @@
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // boltControl1
+            // ofdThunder
             // 
-            this.boltControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.boltControl1.Location = new System.Drawing.Point(6, 19);
-            this.boltControl1.Name = "boltControl1";
-            this.boltControl1.Size = new System.Drawing.Size(364, 418);
-            this.boltControl1.TabIndex = 0;
-            this.boltControl1.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.Input_ValidityChanged);
+            this.ofdThunder.DefaultExt = "thunder";
+            this.ofdThunder.FileName = "thunder1";
+            this.ofdThunder.Filter = "Thunder configs|*.thunder";
+            this.ofdThunder.Title = "Export thunder configuration";
             // 
-            // thunderGeneratorConfig1
+            // sfdThunder
             // 
-            this.thunderGeneratorConfig1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.thunderGeneratorConfig1.Location = new System.Drawing.Point(6, 19);
-            this.thunderGeneratorConfig1.Name = "thunderGeneratorConfig1";
-            this.thunderGeneratorConfig1.Size = new System.Drawing.Size(365, 284);
-            this.thunderGeneratorConfig1.TabIndex = 11;
-            this.thunderGeneratorConfig1.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.Input_ValidityChanged);
+            this.sfdThunder.DefaultExt = "thunder";
+            this.sfdThunder.Filter = "Thunder configs|*.thunder";
+            this.sfdThunder.Title = "Import thunder configuration";
             // 
             // Main
             // 
@@ -254,6 +331,13 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripSplitButton tssbVisualize;
         private System.Windows.Forms.ToolStripMenuItem alwaysVisualizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSplitButton tssbOpenThunder;
+        private System.Windows.Forms.ToolStripMenuItem openfolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openWAVFileToolStripMenuItem;
+        private System.Windows.Forms.Button cmdExport;
+        private System.Windows.Forms.Button cmdImport;
+        private System.Windows.Forms.OpenFileDialog ofdThunder;
+        private System.Windows.Forms.SaveFileDialog sfdThunder;
     }
 }
 

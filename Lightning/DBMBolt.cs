@@ -16,11 +16,13 @@ namespace Thundergen.Lightning
         {
             public int SegmentIndex;
             public int TotalSegments;
+            public bool FinalIteration;
 
-            public PathGenerationProgressEventArgs(int segmentIndex, int totalSegments)
+            public PathGenerationProgressEventArgs(int segmentIndex, int totalSegments, bool finalIteration)
             {
                 SegmentIndex = segmentIndex;
                 TotalSegments = totalSegments;
+                FinalIteration = finalIteration;
             }
         }
 
@@ -249,13 +251,14 @@ namespace Thundergen.Lightning
 
                 if (progress != null && DateTime.UtcNow > nextUpdate)
                 {
-                    progress(this, new PathGenerationProgressEventArgs(c, segmentCenters.Count - 1));
+                    progress(this, new PathGenerationProgressEventArgs(c, segmentCenters.Count - 1, false));
                     while (nextUpdate < DateTime.UtcNow)
                     {
                         nextUpdate += updatePeriod;
                     }
                 }
             }
+            progress(this, new PathGenerationProgressEventArgs(c, segmentCenters.Count - 1, true));
             return boltCenters.ToArray();
         }
 

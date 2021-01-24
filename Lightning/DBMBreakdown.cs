@@ -12,6 +12,10 @@ namespace Thundergen.Lightning
 {
     public class DBMBreakdown
     {
+        #pragma warning disable 0414
+        private int SerializationVersion = 1;
+        #pragma warning restore 0414
+
         public class Configuration
         {
             public Bias[] Biases;
@@ -75,17 +79,32 @@ namespace Thundergen.Lightning
         {
             public readonly DBMBreakdown Breakdown;
             public readonly Vector3 LowestCharge;
+            public readonly bool FinalIteration;
 
-            public GroundPropagationProgressEventArgs(DBMBreakdown breakdown, Vector3 lowestCharge)
+            public GroundPropagationProgressEventArgs(DBMBreakdown breakdown, Vector3 lowestCharge, bool finalIteration)
             {
                 Breakdown = breakdown;
                 LowestCharge = lowestCharge;
+                FinalIteration = finalIteration;
             }
         }
 
-        private Configuration Config;
+        public Configuration Config { get; private set; }
 
         public HashSet<Vector3> NegativeCharges;
+
+        public Vector3 LowestCharge
+        {
+            get
+            {
+                Vector3 lowest = new Vector3(0, 0, float.PositiveInfinity);
+                foreach (Vector3 charge in NegativeCharges)
+                {
+                    if (charge.Z < lowest.Z) lowest = charge;
+                }
+                return lowest;
+            }
+        }
 
         private Dictionary<Vector3, double> Candidates;
         private HashSet<Vector3> CandidateSet;
@@ -316,7 +335,7 @@ namespace Thundergen.Lightning
             {
                 throw new ArgumentException("DBMBreakdown cannot propagate without any seed charges");
             }
-            progress?.Invoke(this, new GroundPropagationProgressEventArgs(this, lowestCharge));
+            progress?.Invoke(this, new GroundPropagationProgressEventArgs(this, lowestCharge, false));
             DateTime nextProgress = DateTime.UtcNow + Config.ProgressPeriod;
             var r = new Random(Config.RandomSeed);
             var p = new double[Config.GrowthPerIteration];
@@ -339,7 +358,7 @@ namespace Thundergen.Lightning
                 {
                     if (DateTime.UtcNow >= nextProgress)
                     {
-                        progress?.Invoke(this, new GroundPropagationProgressEventArgs(this, lowestCharge));
+                        progress?.Invoke(this, new GroundPropagationProgressEventArgs(this, lowestCharge, false));
                         while (nextProgress < DateTime.UtcNow)
                         {
                             nextProgress = DateTime.UtcNow + Config.ProgressPeriod;
@@ -349,6 +368,7 @@ namespace Thundergen.Lightning
                 CullCandidates(Config.CullThreshold, Config.CullLevel, Config.FractionToCullByCharge);
                 if (newPoints.Any(pt => pt.Z <= 0))
                 {
+                    progress?.Invoke(this, new GroundPropagationProgressEventArgs(this, lowestCharge, true));
                     break;
                 }
             }
@@ -380,6 +400,10 @@ namespace Thundergen.Lightning
 
             Vector3 pf = points[0];
             Vector3 pl = points[points.Length - 1];
+
+            PointF pLowest = xformx(new Vector3(0, 0, -1));
+            if (float.IsInfinity(pLowest.Y)) pLowest.Y = height;
+            g.DrawLine(Pens.Black, 0, pLowest.Y, width, pLowest.Y);
 
             var color = new byte[4];
             foreach (Vector3 p in points.OrderBy(p => p.Y))

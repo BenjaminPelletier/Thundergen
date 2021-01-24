@@ -33,6 +33,8 @@
             this.cmdGenerate = new System.Windows.Forms.Button();
             this.breakdownConfigControl1 = new Thundergen.UI.BreakdownConfigControl();
             this.cmdReset = new System.Windows.Forms.Button();
+            this.sfdBreakdown = new System.Windows.Forms.SaveFileDialog();
+            this.ofdBreakdown = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // cmdImport
@@ -92,6 +94,19 @@
             this.cmdReset.UseVisualStyleBackColor = true;
             this.cmdReset.Click += new System.EventHandler(this.cmdReset_Click);
             // 
+            // sfdBreakdown
+            // 
+            this.sfdBreakdown.DefaultExt = "breakdown";
+            this.sfdBreakdown.Filter = "Breakdown patterns|*.breakdown";
+            this.sfdBreakdown.Title = "Import dielectric breakdown pattern";
+            // 
+            // ofdBreakdown
+            // 
+            this.ofdBreakdown.DefaultExt = "breakdown";
+            this.ofdBreakdown.FileName = "breakdown1";
+            this.ofdBreakdown.Filter = "Breakdown patterns|*.breakdown";
+            this.ofdBreakdown.Title = "Export dielectric breakdown pattern";
+            // 
             // BreakdownControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,5 +129,7 @@
         private System.Windows.Forms.Button cmdExport;
         private System.Windows.Forms.Button cmdGenerate;
         private System.Windows.Forms.Button cmdReset;
+        private System.Windows.Forms.SaveFileDialog sfdBreakdown;
+        private System.Windows.Forms.OpenFileDialog ofdBreakdown;
     }
 }

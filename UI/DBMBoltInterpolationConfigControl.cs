@@ -14,6 +14,7 @@ namespace Thundergen.UI
     public partial class DBMBoltInterpolationConfigControl : UserControl
     {
         public event EventHandler<ValidityChangedEventArgs> ValidityChanged;
+        public event EventHandler ValueChanged;
 
         public bool Valid { get; private set; } = false;
 
@@ -67,11 +68,26 @@ namespace Thundergen.UI
                     return null;
                 }
             }
+            set
+            {
+                if (value != null)
+                {
+                    txtScale.Text = value.Scale.ToString();
+                    txtInitialSmoothing.Text = value.InitialSmoothing.ToString();
+                    txtEnvelopeExtent.Text = value.EnvelopeExtent.ToString();
+                    txtSegmentLength.Text = value.InterpolatedSegmentLength.ToString();
+                }
+            }
         }
 
         private void txtInput_ValidityChanged(object sender, ValidityChangedEventArgs e)
         {
             ComputeValidity();
+        }
+
+        private void txtInput_TextChanged(object sender, EventArgs e)
+        {
+            ValueChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

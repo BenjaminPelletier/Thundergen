@@ -16,9 +16,9 @@ namespace Thundergen.UI
     public partial class DBMBoltControl : UserControl
     {
         public event EventHandler<DBMBreakdown.GroundPropagationProgressEventArgs> BreakdownPropagationProgress;
-        public event EventHandler<DBMBolt.PathGenerationProgressEventArgs> PathGenerationProgress;
 
         public event EventHandler<ValidityChangedEventArgs> ValidityChanged;
+        public event EventHandler ValueChanged;
 
         public bool Valid { get; private set; } = true;
 
@@ -38,13 +38,17 @@ namespace Thundergen.UI
             InitializeComponent();
         }
 
-        public async Task<Vector3[]> RequestPath(CancellationToken token)
+        public async Task<DBMBolt> RequestBolt(CancellationToken token)
         {
             DBMBreakdown breakdown = await breakdownControl1.RequestBreakdown(token);
             DBMBolt.InterpolationConfiguration interpConfig = dbmBoltInterpolationConfigControl1.Config;
-            DBMBolt bolt = new DBMBolt(new DBMBolt.Configuration(breakdown, interpConfig));
-            Vector3[] path = await Asynchronizer.Wrap(() => bolt.GeneratePath(token, PathGenerationProgress));
-            return path;
+            return new DBMBolt(new DBMBolt.Configuration(breakdown, interpConfig));
+        }
+
+        public void SetBolt(DBMBolt bolt)
+        {
+            breakdownControl1.SetBreakdown(bolt.Config.Breakdown);
+            dbmBoltInterpolationConfigControl1.Config = bolt.Config.Interpolation;
         }
 
         private void breakdownControl1_BreakdownPropagationProgress(object sender, DBMBreakdown.GroundPropagationProgressEventArgs e)
@@ -55,6 +59,11 @@ namespace Thundergen.UI
         private void Input_ValidityChanged(object sender, ValidityChangedEventArgs e)
         {
             ComputeValidity();
+        }
+
+        private void Input_ValueChanged(object sender, EventArgs e)
+        {
+            ValueChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

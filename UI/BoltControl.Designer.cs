@@ -33,6 +33,10 @@
             this.dbmBoltControl1 = new Thundergen.UI.DBMBoltControl();
             this.tpBrownian = new System.Windows.Forms.TabPage();
             this.cmdGenerate = new System.Windows.Forms.Button();
+            this.cmdImport = new System.Windows.Forms.Button();
+            this.cmdExport = new System.Windows.Forms.Button();
+            this.sfdBolt = new System.Windows.Forms.SaveFileDialog();
+            this.ofdBolt = new System.Windows.Forms.OpenFileDialog();
             this.tcConfig.SuspendLayout();
             this.tpDBM.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +53,7 @@
             this.tcConfig.SelectedIndex = 0;
             this.tcConfig.Size = new System.Drawing.Size(362, 381);
             this.tcConfig.TabIndex = 0;
+            this.tcConfig.TabIndexChanged += new System.EventHandler(this.tcConfig_TabIndexChanged);
             // 
             // tpDBM
             // 
@@ -72,8 +77,8 @@
             this.dbmBoltControl1.Size = new System.Drawing.Size(345, 343);
             this.dbmBoltControl1.TabIndex = 0;
             this.dbmBoltControl1.BreakdownPropagationProgress += new System.EventHandler<Thundergen.Lightning.DBMBreakdown.GroundPropagationProgressEventArgs>(this.dbmBoltControl1_BreakdownPropagationProgress);
-            this.dbmBoltControl1.PathGenerationProgress += new System.EventHandler<Thundergen.Lightning.DBMBolt.PathGenerationProgressEventArgs>(this.dbmBoltControl1_PathGenerationProgress);
             this.dbmBoltControl1.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.dbmBoltControl1_ValidityChanged);
+            this.dbmBoltControl1.ValueChanged += new System.EventHandler(this.dbmBoltControl1_ValueChanged);
             // 
             // tpBrownian
             // 
@@ -96,10 +101,48 @@
             this.cmdGenerate.UseVisualStyleBackColor = true;
             this.cmdGenerate.Click += new System.EventHandler(this.cmdGenerate_Click);
             // 
+            // cmdImport
+            // 
+            this.cmdImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdImport.Location = new System.Drawing.Point(3, 390);
+            this.cmdImport.Name = "cmdImport";
+            this.cmdImport.Size = new System.Drawing.Size(54, 23);
+            this.cmdImport.TabIndex = 2;
+            this.cmdImport.Text = "Import";
+            this.cmdImport.UseVisualStyleBackColor = true;
+            this.cmdImport.Click += new System.EventHandler(this.cmdImport_Click);
+            // 
+            // cmdExport
+            // 
+            this.cmdExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdExport.Enabled = false;
+            this.cmdExport.Location = new System.Drawing.Point(63, 390);
+            this.cmdExport.Name = "cmdExport";
+            this.cmdExport.Size = new System.Drawing.Size(54, 23);
+            this.cmdExport.TabIndex = 3;
+            this.cmdExport.Text = "Export";
+            this.cmdExport.UseVisualStyleBackColor = true;
+            this.cmdExport.Click += new System.EventHandler(this.cmdExport_Click);
+            // 
+            // sfdBolt
+            // 
+            this.sfdBolt.DefaultExt = "bolt";
+            this.sfdBolt.Filter = "Bolts|*.bolt";
+            this.sfdBolt.Title = "Import lightning bolt geometry";
+            // 
+            // ofdBolt
+            // 
+            this.ofdBolt.DefaultExt = "bolt";
+            this.ofdBolt.FileName = "breakdown1";
+            this.ofdBolt.Filter = "Bolts|*.bolt";
+            this.ofdBolt.Title = "Export lightning bolt geometry";
+            // 
             // BoltControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmdExport);
+            this.Controls.Add(this.cmdImport);
             this.Controls.Add(this.cmdGenerate);
             this.Controls.Add(this.tcConfig);
             this.Name = "BoltControl";
@@ -117,5 +160,9 @@
         private System.Windows.Forms.TabPage tpBrownian;
         private System.Windows.Forms.Button cmdGenerate;
         private DBMBoltControl dbmBoltControl1;
+        private System.Windows.Forms.Button cmdImport;
+        private System.Windows.Forms.Button cmdExport;
+        private System.Windows.Forms.SaveFileDialog sfdBolt;
+        private System.Windows.Forms.OpenFileDialog ofdBolt;
     }
 }

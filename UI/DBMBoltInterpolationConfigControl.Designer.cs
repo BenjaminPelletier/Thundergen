@@ -72,6 +72,7 @@
             this.txtEnvelopeExtent.TabIndex = 77;
             this.txtEnvelopeExtent.Text = "10";
             this.txtEnvelopeExtent.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.txtInput_ValidityChanged);
+            this.txtEnvelopeExtent.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
             // 
             // label1
             // 
@@ -103,6 +104,7 @@
             this.txtInitialSmoothing.TabIndex = 74;
             this.txtInitialSmoothing.Text = "2";
             this.txtInitialSmoothing.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.txtInput_ValidityChanged);
+            this.txtInitialSmoothing.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
             // 
             // label13
             // 
@@ -134,6 +136,7 @@
             this.txtSegmentLength.TabIndex = 71;
             this.txtSegmentLength.Text = "1.0";
             this.txtSegmentLength.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.txtInput_ValidityChanged);
+            this.txtSegmentLength.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
             // 
             // label12
             // 
@@ -165,6 +168,7 @@
             this.txtScale.TabIndex = 68;
             this.txtScale.Text = "1";
             this.txtScale.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.txtInput_ValidityChanged);
+            this.txtScale.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
             // 
             // DBMBoltInterpolationConfigControl
             // 

@@ -60,7 +60,7 @@ namespace Thundergen.Thunder
     {
         public static string AsString(this FollowingStroke[] strokes)
         {
-            return strokes == null ? "" : strokes.Select(s => s.Interval * 1000 + "ms@" + s.RelativeAmplitude).Aggregate((a, b) => a + ", " + b);
+            return strokes == null || strokes.Length == 0 ? "" : strokes.Select(s => s.Interval * 1000 + "ms@" + s.RelativeAmplitude).Aggregate((a, b) => a + ", " + b);
         }
     }
 }

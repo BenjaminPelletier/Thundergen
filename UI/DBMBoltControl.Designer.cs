@@ -58,6 +58,7 @@
             this.breakdownControl1.TabIndex = 1;
             this.breakdownControl1.BreakdownPropagationProgress += new System.EventHandler<Thundergen.Lightning.DBMBreakdown.GroundPropagationProgressEventArgs>(this.breakdownControl1_BreakdownPropagationProgress);
             this.breakdownControl1.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.Input_ValidityChanged);
+            this.breakdownControl1.ValueChanged += new System.EventHandler(this.Input_ValueChanged);
             // 
             // gbInterpolation
             // 
@@ -80,6 +81,7 @@
             this.dbmBoltInterpolationConfigControl1.Size = new System.Drawing.Size(389, 103);
             this.dbmBoltInterpolationConfigControl1.TabIndex = 69;
             this.dbmBoltInterpolationConfigControl1.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.Input_ValidityChanged);
+            this.dbmBoltInterpolationConfigControl1.ValueChanged += new System.EventHandler(this.Input_ValueChanged);
             // 
             // DBMBoltControl
             // 

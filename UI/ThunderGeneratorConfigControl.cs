@@ -15,6 +15,7 @@ namespace Thundergen.UI
     public partial class ThunderGeneratorConfigControl : UserControl
     {
         public event EventHandler<ValidityChangedEventArgs> ValidityChanged;
+        public event EventHandler ValueChanged;
 
         public bool Valid { get; private set; } = false;
 
@@ -101,6 +102,21 @@ namespace Thundergen.UI
         private void Input_ValidityChanged(object sender, ValidityChangedEventArgs e)
         {
             ComputeValidity();
+        }
+
+        private void txtInput_TextChanged(object sender, EventArgs e)
+        {
+            ValueChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void atmosphericConditions1_ValueChanged(object sender, EventArgs e)
+        {
+            ValueChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void chkSteepen_CheckedChanged(object sender, EventArgs e)
+        {
+            ValueChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

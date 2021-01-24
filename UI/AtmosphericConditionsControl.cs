@@ -13,6 +13,7 @@ namespace Thundergen.UI
     public partial class AtmosphericConditionsControl : UserControl
     {
         public event EventHandler<ValidityChangedEventArgs> ValidityChanged;
+        public event EventHandler ValueChanged;
 
         public bool Valid { get; private set; } = false;
 
@@ -29,12 +30,6 @@ namespace Thundergen.UI
                     txtTemperature.Text = (value.Temperature - 273.15).ToString();
                     txtRelativeHumidity.Text = value.RelativeHumidity.ToString();
                     txtPressure.Text = (value.Pressure / 100).ToString();
-                }
-                else
-                {
-                    txtTemperature.Text = "";
-                    txtRelativeHumidity.Text = "";
-                    txtPressure.Text = "";
                 }
             }
         }
@@ -73,6 +68,11 @@ namespace Thundergen.UI
         private void txtInput_ValidityChanged(object sender, ValidityChangedEventArgs e)
         {
             ComputeValidity();
+        }
+
+        private void txtInput_TextChanged(object sender, EventArgs e)
+        {
+            ValueChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

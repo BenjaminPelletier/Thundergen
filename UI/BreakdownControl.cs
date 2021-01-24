@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Thundergen.Lightning;
 using System.Numerics;
 using System.Threading;
+using System.IO;
+using Json.Serialization;
 
 namespace Thundergen.UI
 {
@@ -20,6 +22,7 @@ namespace Thundergen.UI
         public event EventHandler<DBMBreakdown.GroundPropagationProgressEventArgs> BreakdownPropagationProgress;
 
         public event EventHandler<ValidityChangedEventArgs> ValidityChanged;
+        public event EventHandler ValueChanged;
 
         private CancellationTokenSource mCancelViaUI = null;
         private TaskCompletionSource<DBMBreakdown> mCurrentRequest = null;
@@ -29,6 +32,9 @@ namespace Thundergen.UI
         public BreakdownControl()
         {
             InitializeComponent();
+
+            ofdBreakdown.InitialDirectory = Directory.GetCurrentDirectory();
+            sfdBreakdown.InitialDirectory = ofdBreakdown.InitialDirectory;
         }
 
         public async Task<DBMBreakdown> RequestBreakdown(CancellationToken token)
@@ -68,21 +74,54 @@ namespace Thundergen.UI
             return mBreakdown;
         }
 
+        public void SetBreakdown(DBMBreakdown breakdown)
+        {
+            breakdownConfigControl1.Config = breakdown.Config;
+            mBreakdown = breakdown;
+            cmdGenerate.Enabled = false;
+            ValueChanged?.Invoke(this, EventArgs.Empty);
+            BreakdownPropagationProgress?.Invoke(this, new DBMBreakdown.GroundPropagationProgressEventArgs(mBreakdown, breakdown.LowestCharge, true));
+        }
+
         private void cmdImport_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Feature not yet implemented");
+            if (ofdBreakdown.ShowDialog(this) == DialogResult.OK)
+            {
+                var fi = new FileInfo(ofdBreakdown.FileName);
+                DBMBreakdown breakdown;
+                try
+                {
+                    breakdown = Serialization.Read<DBMBreakdown>(fi.FullName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, "Error importing breakdown pattern: " + ex, "Breakdown import error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                SetBreakdown(breakdown);
+                sfdBreakdown.InitialDirectory = fi.DirectoryName;
+                ofdBreakdown.InitialDirectory = fi.DirectoryName;
+            }
         }
 
         private void cmdExport_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Feature not yet implemented");
+            if (sfdBreakdown.ShowDialog(this) == DialogResult.OK)
+            {
+                var fi = new FileInfo(sfdBreakdown.FileName);
+                Serialization.Write(mBreakdown, fi.FullName);
+                sfdBreakdown.InitialDirectory = fi.DirectoryName;
+                ofdBreakdown.InitialDirectory = fi.DirectoryName;
+            }
         }
 
         private void ResetBreakdown()
         {
+            bool triggerValueChanged = mBreakdown != null;
             mBreakdown = null;
             cmdReset.Enabled = false;
             cmdExport.Enabled = false;
+            if (triggerValueChanged) ValueChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void cmdReset_Click(object sender, EventArgs e)
@@ -98,6 +137,8 @@ namespace Thundergen.UI
                 try
                 {
                     mBreakdown = await RequestBreakdown(CancellationToken.None);
+                    cmdGenerate.Enabled = false;
+                    ValueChanged?.Invoke(this, EventArgs.Empty);
                 }
                 catch (TaskCanceledException)
                 {

@@ -59,6 +59,7 @@
             this.txtTemperature.TabIndex = 1;
             this.txtTemperature.Text = "20";
             this.txtTemperature.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.txtInput_ValidityChanged);
+            this.txtTemperature.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
             // 
             // label2
             // 
@@ -91,6 +92,7 @@
             this.txtPressure.TabIndex = 4;
             this.txtPressure.Text = "1013.2";
             this.txtPressure.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.txtInput_ValidityChanged);
+            this.txtPressure.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
             // 
             // label4
             // 
@@ -122,6 +124,7 @@
             this.txtRelativeHumidity.TabIndex = 7;
             this.txtRelativeHumidity.Text = "90";
             this.txtRelativeHumidity.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.txtInput_ValidityChanged);
+            this.txtRelativeHumidity.TextChanged += new System.EventHandler(this.txtInput_TextChanged);
             // 
             // label6
             // 
