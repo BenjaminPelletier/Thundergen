@@ -80,12 +80,15 @@ namespace Thundergen
                 cmdMakeThunder.Tag = cts;
                 cmdMakeThunder.Text = "Cancel";
                 Vector3[] path = await boltControl1.RequestPath(cts.Token);
-                mThunder = await Asynchronizer.Wrap(() => Generator.Generate(path, thunderGeneratorConfig1.Config, OnUIThread<Generator.ProgressEventArgs>(ThunderGenerator_Progress)));
-                tssbOpenThunder.Visible = true;
-                WaveFileWriter.CreateWaveFile(@"thunder.wav", mThunder.ToStream());
-                var fi = new FileInfo(@"thunder.wav");
-                tsslStatus.Text = "Wrote thunder to " + fi.FullName;
-                cmdExport.Enabled = true;
+                if (path != null && path.Length > 1)
+                {
+                    mThunder = await Asynchronizer.Wrap(() => Generator.Generate(path, thunderGeneratorConfig1.Config, OnUIThread<Generator.ProgressEventArgs>(ThunderGenerator_Progress)));
+                    tssbOpenThunder.Visible = true;
+                    WaveFileWriter.CreateWaveFile(@"thunder.wav", mThunder.ToStream());
+                    var fi = new FileInfo(@"thunder.wav");
+                    tsslStatus.Text = "Wrote thunder to " + fi.FullName;
+                    cmdExport.Enabled = true;
+                }
             }
             else
             {

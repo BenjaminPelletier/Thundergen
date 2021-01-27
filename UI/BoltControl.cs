@@ -143,20 +143,23 @@ namespace Thundergen.UI
             }
             set
             {
-                if (value.Dictionary["BoltType"].String == "DBMBolt")
+                if (value != null && value.ObjectType == JsonObject.Type.Dictionary)
                 {
-                    var bolt = Serialization.Translator.MakeObject<DBMBolt>(value.Dictionary["Bolt"]);
-                    var path = Serialization.Translator.MakeObject<Vector3[]>(value.Dictionary["Path"]);
-                    dbmBoltControl1.SetBolt(bolt);
-                    mCache[tpDBM] = new CachedBolt() { Bolt = bolt, Path = path };
-                    cmdExport.Enabled = true;
-                    CacheChanged?.Invoke(this, new ValidityChangedEventArgs(true));
-                    PathGenerationProgress?.Invoke(this, new DBMBolt.PathGenerationProgressEventArgs(path.Length - 1, path.Length - 1, true));
-                    tcConfig.SelectedTab = tpDBM;
-                }
-                else
-                {
-                    throw new ArgumentException("Bolt type is not yet supported");
+                    if (value.Dictionary["BoltType"].String == "DBMBolt")
+                    {
+                        var bolt = Serialization.Translator.MakeObject<DBMBolt>(value.Dictionary["Bolt"]);
+                        var path = Serialization.Translator.MakeObject<Vector3[]>(value.Dictionary["Path"]);
+                        dbmBoltControl1.SetBolt(bolt);
+                        mCache[tpDBM] = new CachedBolt() { Bolt = bolt, Path = path };
+                        cmdExport.Enabled = true;
+                        CacheChanged?.Invoke(this, new ValidityChangedEventArgs(true));
+                        PathGenerationProgress?.Invoke(this, new DBMBolt.PathGenerationProgressEventArgs(path.Length - 1, path.Length - 1, true));
+                        tcConfig.SelectedTab = tpDBM;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Bolt type is not yet supported");
+                    }
                 }
             }
         }

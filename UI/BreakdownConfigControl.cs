@@ -81,7 +81,7 @@ namespace Thundergen.UI
                         int.Parse(txtGrowthPerIteration.Text),
                         int.Parse(txtCullThreshold.Text),
                         int.Parse(txtCullLevel.Text),
-                        double.Parse(txtFractionToCullByCharge.Text)
+                        double.Parse(txtFractionToCullByCharge.Text) / 100
                     );
                 }
                 else
@@ -101,7 +101,7 @@ namespace Thundergen.UI
                     txtGrowthPerIteration.Text = value.GrowthPerIteration.ToString();
                     txtCullThreshold.Text = value.CullThreshold.ToString();
                     txtCullLevel.Text = value.CullLevel.ToString();
-                    txtFractionToCullByCharge.Text = value.FractionToCullByCharge.ToString();
+                    txtFractionToCullByCharge.Text = (value.FractionToCullByCharge * 100).ToString();
                 }
             }
         }

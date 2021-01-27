@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            Thundergen.Thunder.Generator.Config config1 = new Thundergen.Thunder.Generator.Config();
+            Thundergen.Thunder.Generator.Config config6 = new Thundergen.Thunder.Generator.Config();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssbVisualize = new System.Windows.Forms.ToolStripSplitButton();
@@ -71,7 +71,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1111, 936);
+            this.pictureBox1.Size = new System.Drawing.Size(1073, 936);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -146,7 +146,7 @@
             // cmdMakeThunder
             // 
             this.cmdMakeThunder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdMakeThunder.Location = new System.Drawing.Point(292, 917);
+            this.cmdMakeThunder.Location = new System.Drawing.Point(330, 917);
             this.cmdMakeThunder.Name = "cmdMakeThunder";
             this.cmdMakeThunder.Size = new System.Drawing.Size(88, 23);
             this.cmdMakeThunder.TabIndex = 10;
@@ -161,7 +161,7 @@
             this.gbBolt.Controls.Add(this.boltControl1);
             this.gbBolt.Location = new System.Drawing.Point(3, 4);
             this.gbBolt.Name = "gbBolt";
-            this.gbBolt.Size = new System.Drawing.Size(377, 443);
+            this.gbBolt.Size = new System.Drawing.Size(415, 504);
             this.gbBolt.TabIndex = 11;
             this.gbBolt.TabStop = false;
             this.gbBolt.Text = "Lightning";
@@ -173,7 +173,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.boltControl1.Location = new System.Drawing.Point(6, 19);
             this.boltControl1.Name = "boltControl1";
-            this.boltControl1.Size = new System.Drawing.Size(364, 418);
+            this.boltControl1.Size = new System.Drawing.Size(402, 479);
             this.boltControl1.TabIndex = 0;
             this.boltControl1.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.Input_ValidityChanged);
             this.boltControl1.CacheChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.boltControl1_CacheChanged);
@@ -183,9 +183,9 @@
             this.gbThunder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbThunder.Controls.Add(this.thunderGeneratorConfig1);
-            this.gbThunder.Location = new System.Drawing.Point(3, 453);
+            this.gbThunder.Location = new System.Drawing.Point(6, 514);
             this.gbThunder.Name = "gbThunder";
-            this.gbThunder.Size = new System.Drawing.Size(377, 283);
+            this.gbThunder.Size = new System.Drawing.Size(415, 283);
             this.gbThunder.TabIndex = 12;
             this.gbThunder.TabStop = false;
             this.gbThunder.Text = "Thunder";
@@ -195,10 +195,10 @@
             this.thunderGeneratorConfig1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.thunderGeneratorConfig1.Config = config1;
+            this.thunderGeneratorConfig1.Config = config6;
             this.thunderGeneratorConfig1.Location = new System.Drawing.Point(6, 19);
             this.thunderGeneratorConfig1.Name = "thunderGeneratorConfig1";
-            this.thunderGeneratorConfig1.Size = new System.Drawing.Size(365, 258);
+            this.thunderGeneratorConfig1.Size = new System.Drawing.Size(403, 258);
             this.thunderGeneratorConfig1.TabIndex = 11;
             this.thunderGeneratorConfig1.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.Input_ValidityChanged);
             // 
@@ -222,7 +222,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.cmdMakeThunder);
             this.splitContainer1.Panel2.Controls.Add(this.gbThunder);
             this.splitContainer1.Size = new System.Drawing.Size(1504, 943);
-            this.splitContainer1.SplitterDistance = 1117;
+            this.splitContainer1.SplitterDistance = 1079;
             this.splitContainer1.TabIndex = 13;
             // 
             // cmdExport

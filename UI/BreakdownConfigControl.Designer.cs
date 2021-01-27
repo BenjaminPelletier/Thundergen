@@ -237,6 +237,8 @@
             // 
             // txtCullThreshold
             // 
+            this.txtCullThreshold.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCullThreshold.BackColor = System.Drawing.Color.White;
             this.txtCullThreshold.Location = new System.Drawing.Point(136, 159);
             this.txtCullThreshold.Name = "txtCullThreshold";
@@ -257,6 +259,7 @@
             // 
             // label13
             // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(184, 162);
             this.label13.Name = "label13";
@@ -266,8 +269,7 @@
             // 
             // txtCullLevel
             // 
-            this.txtCullLevel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCullLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCullLevel.BackColor = System.Drawing.Color.White;
             this.txtCullLevel.Location = new System.Drawing.Point(276, 159);
             this.txtCullLevel.Name = "txtCullLevel";

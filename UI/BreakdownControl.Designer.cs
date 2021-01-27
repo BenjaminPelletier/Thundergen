@@ -40,7 +40,7 @@
             // cmdImport
             // 
             this.cmdImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cmdImport.Location = new System.Drawing.Point(3, 166);
+            this.cmdImport.Location = new System.Drawing.Point(3, 217);
             this.cmdImport.Name = "cmdImport";
             this.cmdImport.Size = new System.Drawing.Size(58, 23);
             this.cmdImport.TabIndex = 2;
@@ -52,7 +52,7 @@
             // 
             this.cmdExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdExport.Enabled = false;
-            this.cmdExport.Location = new System.Drawing.Point(67, 166);
+            this.cmdExport.Location = new System.Drawing.Point(67, 217);
             this.cmdExport.Name = "cmdExport";
             this.cmdExport.Size = new System.Drawing.Size(58, 23);
             this.cmdExport.TabIndex = 3;
@@ -63,7 +63,7 @@
             // cmdGenerate
             // 
             this.cmdGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdGenerate.Location = new System.Drawing.Point(252, 166);
+            this.cmdGenerate.Location = new System.Drawing.Point(261, 217);
             this.cmdGenerate.Name = "cmdGenerate";
             this.cmdGenerate.Size = new System.Drawing.Size(68, 23);
             this.cmdGenerate.TabIndex = 4;
@@ -73,11 +73,12 @@
             // 
             // breakdownConfigControl1
             // 
-            this.breakdownConfigControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.breakdownConfigControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.breakdownConfigControl1.Location = new System.Drawing.Point(3, 3);
             this.breakdownConfigControl1.Name = "breakdownConfigControl1";
-            this.breakdownConfigControl1.Size = new System.Drawing.Size(317, 157);
+            this.breakdownConfigControl1.Size = new System.Drawing.Size(326, 208);
             this.breakdownConfigControl1.TabIndex = 1;
             this.breakdownConfigControl1.ValidityChanged += new System.EventHandler<Thundergen.UI.ValidityChangedEventArgs>(this.breakdownConfigControl1_ValidityChanged);
             this.breakdownConfigControl1.ValueChanged += new System.EventHandler(this.breakdownConfigControl1_ValueChanged);
@@ -86,7 +87,7 @@
             // 
             this.cmdReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdReset.Enabled = false;
-            this.cmdReset.Location = new System.Drawing.Point(131, 166);
+            this.cmdReset.Location = new System.Drawing.Point(131, 217);
             this.cmdReset.Name = "cmdReset";
             this.cmdReset.Size = new System.Drawing.Size(58, 23);
             this.cmdReset.TabIndex = 5;
@@ -117,7 +118,7 @@
             this.Controls.Add(this.cmdImport);
             this.Controls.Add(this.breakdownConfigControl1);
             this.Name = "BreakdownControl";
-            this.Size = new System.Drawing.Size(323, 193);
+            this.Size = new System.Drawing.Size(332, 244);
             this.ResumeLayout(false);
 
         }
