@@ -242,6 +242,19 @@ namespace Thundergen
 
         #endregion
 
+        #region Compatibility
+
+        public static JsonObject ConvertLegacyEnumerableOfVector3(JsonObject legacy)
+        {
+            return new JsonObject(new Dictionary<string, JsonObject>()
+            {
+                { "VectorStorageMode", new JsonObject("Int") },
+                { "Content", legacy }
+            });
+        }
+
+        #endregion
+
         public static void Write<T>(T obj, string filename)
         {
             var json = Export(obj);

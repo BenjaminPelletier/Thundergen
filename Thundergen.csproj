@@ -95,6 +95,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Serialization.cs" />
     <Compile Include="Lightning\BrownianBolt.cs" />
     <Compile Include="Lightning\DBMBreakdown.cs" />

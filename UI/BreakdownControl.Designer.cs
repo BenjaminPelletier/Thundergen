@@ -105,7 +105,7 @@
             // 
             this.ofdBreakdown.DefaultExt = "breakdown";
             this.ofdBreakdown.FileName = "breakdown1";
-            this.ofdBreakdown.Filter = "Breakdown patterns|*.breakdown";
+            this.ofdBreakdown.Filter = "Breakdown patterns|*.breakdown|Legacy bolt file|*.blt";
             this.ofdBreakdown.Title = "Export dielectric breakdown pattern";
             // 
             // BreakdownControl

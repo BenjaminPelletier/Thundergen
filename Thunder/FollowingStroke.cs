@@ -50,7 +50,7 @@ namespace Thundergen.Thunder
                 double interval, relativeAmplitude;
                 if (!double.TryParse(cols[0], out interval)) return null;
                 if (!double.TryParse(cols[1], out relativeAmplitude)) return null;
-                strokes.Add(new FollowingStroke(interval, relativeAmplitude));
+                strokes.Add(new FollowingStroke(interval / 1000, relativeAmplitude));
             }
             return strokes;
         }

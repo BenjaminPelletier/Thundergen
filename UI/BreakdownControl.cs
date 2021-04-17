@@ -52,7 +52,10 @@ namespace Thundergen.UI
             }
             try
             {
-                await Asynchronizer.Wrap(() => mBreakdown.PropagateToGround(token, Breakdown_Progress));
+                if (mBreakdown.LowestCharge.Z > 1)
+                {
+                    await Asynchronizer.Wrap(() => mBreakdown.PropagateToGround(token, Breakdown_Progress));
+                }
                 this.Invoke(new Action(() => cmdGenerate.Enabled = false));
             }
             catch (TaskCanceledException)
@@ -78,6 +81,7 @@ namespace Thundergen.UI
         {
             breakdownConfigControl1.Config = breakdown.Config;
             mBreakdown = breakdown;
+            cmdExport.Enabled = true;
             cmdGenerate.Enabled = false;
             ValueChanged?.Invoke(this, EventArgs.Empty);
             BreakdownPropagationProgress?.Invoke(this, new DBMBreakdown.GroundPropagationProgressEventArgs(mBreakdown, breakdown.LowestCharge, true));
@@ -89,13 +93,32 @@ namespace Thundergen.UI
             {
                 var fi = new FileInfo(ofdBreakdown.FileName);
                 DBMBreakdown breakdown;
-                try
+                if (fi.Name.ToLower().EndsWith(".breakdown"))
                 {
-                    breakdown = Serialization.Read<DBMBreakdown>(fi.FullName);
+                    try
+                    {
+                        breakdown = Serialization.Read<DBMBreakdown>(fi.FullName);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, "Error importing breakdown pattern: " + ex, "Breakdown import error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
-                catch (Exception ex)
+                else if (fi.Name.ToLower().EndsWith(".blt"))
                 {
-                    MessageBox.Show(this, "Error importing breakdown pattern: " + ex, "Breakdown import error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    JsonObject blt = JsonObject.Parse(File.ReadAllText(fi.FullName));
+                    DBMBreakdown.Configuration config = breakdownConfigControl1.Config;
+                    config.Biases = Serialization.Import<DBMBreakdown.Bias[]>(blt.Dictionary["Breakdown"]["Biases"]);
+                    config.MaxHeight = blt.Dictionary["Breakdown"]["MaxHeight"].Number;
+                    breakdown = new DBMBreakdown(config);
+                    breakdown.NegativeCharges = Serialization.Import<HashSet<Vector3>>(Serialization.ConvertLegacyEnumerableOfVector3(blt.Dictionary["Breakdown"]["NegativeCharges"]));
+                    //breakdown.RecomputeAllCandidates();
+                    SetBreakdown(breakdown);
+                }
+                else
+                {
+                    MessageBox.Show(this, "Unrecognized extension");
                     return;
                 }
                 SetBreakdown(breakdown);

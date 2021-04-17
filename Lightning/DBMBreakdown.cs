@@ -89,7 +89,7 @@ namespace Thundergen.Lightning
             }
         }
 
-        public Configuration Config { get; private set; }
+        public Configuration Config;
 
         public HashSet<Vector3> NegativeCharges;
 
@@ -152,6 +152,43 @@ namespace Thundergen.Lightning
                 AddCandidates(charge);
             }
         }
+
+        //public void RecomputeAllCandidates()
+        //{
+        //    object baton = new object();
+        //    int i = 0;
+        //    Parallel.ForEach(NegativeCharges, charge =>
+        //    {
+        //        foreach (Vector3 dc in GROWTH_NEIGHBORS)
+        //        {
+        //            Vector3 candidate = charge + dc;
+        //            bool compute = false;
+        //            lock (baton)
+        //            {
+        //                compute = !NegativeCharges.Contains(candidate) && !CandidateSet.Contains(candidate);
+        //            }
+        //            if (compute)
+        //            {
+        //                double totalCharge = 0;
+        //                foreach (var bias in Config.Biases)
+        //                {
+        //                    totalCharge += NegativeCharges.Count * bias.FractionOfBolt * (1 - 0.5 / Math.Abs(bias.Height - candidate.Z));
+        //                }
+        //                foreach (var c in NegativeCharges)
+        //                {
+        //                    totalCharge += 1 - 0.5 / (candidate - c).Length();
+        //                }
+        //                lock (baton)
+        //                {
+        //                    Candidates[candidate] = totalCharge;
+        //                    CandidateSet.Add(candidate);
+        //                }
+        //            }
+        //        }
+        //        Interlocked.Increment(ref i);
+        //    });
+        //    CullCandidates(Config.CullThreshold, Config.CullLevel, Config.FractionToCullByCharge);
+        //}
 
         public Vector3[] TopCharges
         {
