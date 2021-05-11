@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Thundergen.Actions;
 using Thundergen.Lightning;
 using Thundergen.Thunder;
 using Thundergen.UI;
@@ -235,6 +236,18 @@ namespace Thundergen
         private void boltControl1_CacheChanged(object sender, ValidityChangedEventArgs e)
         {
             cmdExport.Enabled = e.Valid && thunderGeneratorConfig1.Valid;
+        }
+
+        private void manufactureBreakdownsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var t = new Thread(() => Manufacture.Breakdowns(boltControl1.BreakdownConfiguration, msg => Invoke(new Action(() => { tsslStatus.Text = msg; }))));
+            t.Start();
+        }
+
+        private void manufactureWAVsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var t = new Thread(() => Manufacture.Sounds(boltControl1.InterpolationConfiguration, thunderGeneratorConfig1.Config, msg => Invoke(new Action(() => { tsslStatus.Text = msg; }))));
+            t.Start();
         }
     }
 }

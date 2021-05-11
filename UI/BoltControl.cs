@@ -48,6 +48,22 @@ namespace Thundergen.UI
             }
         }
 
+        public DBMBreakdown.Configuration BreakdownConfiguration
+        {
+            get
+            {
+                return dbmBoltControl1.BreakdownConfiguration;
+            }
+        }
+
+        public DBMBolt.InterpolationConfiguration InterpolationConfiguration
+        {
+            get
+            {
+                return dbmBoltControl1.InterpolationConfiguration;
+            }
+        }
+
         public BoltControl()
         {
             InitializeComponent();

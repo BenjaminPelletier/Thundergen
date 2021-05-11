@@ -22,6 +22,22 @@ namespace Thundergen.UI
 
         public bool Valid { get; private set; } = true;
 
+        public DBMBreakdown.Configuration BreakdownConfiguration
+        {
+            get
+            {
+                return breakdownControl1.BreakdownConfiguration;
+            }
+        }
+
+        public DBMBolt.InterpolationConfiguration InterpolationConfiguration
+        {
+            get
+            {
+                return dbmBoltInterpolationConfigControl1.Config;
+            }
+        }
+
         private void ComputeValidity()
         {
             bool old = Valid;

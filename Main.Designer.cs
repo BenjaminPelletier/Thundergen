@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            Thundergen.Thunder.Generator.Config config6 = new Thundergen.Thunder.Generator.Config();
+            Thundergen.Thunder.Generator.Config config2 = new Thundergen.Thunder.Generator.Config();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssbVisualize = new System.Windows.Forms.ToolStripSplitButton();
@@ -51,8 +51,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manufactureBreakdownsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdThunder = new System.Windows.Forms.OpenFileDialog();
             this.sfdThunder = new System.Windows.Forms.SaveFileDialog();
+            this.manufactureWAVsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.gbBolt.SuspendLayout();
@@ -195,7 +198,7 @@
             this.thunderGeneratorConfig1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.thunderGeneratorConfig1.Config = config6;
+            this.thunderGeneratorConfig1.Config = config2;
             this.thunderGeneratorConfig1.Location = new System.Drawing.Point(6, 19);
             this.thunderGeneratorConfig1.Name = "thunderGeneratorConfig1";
             this.thunderGeneratorConfig1.Size = new System.Drawing.Size(403, 258);
@@ -251,7 +254,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.actionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1528, 24);
@@ -273,6 +277,22 @@
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // actionsToolStripMenuItem
+            // 
+            this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manufactureBreakdownsToolStripMenuItem,
+            this.manufactureWAVsToolStripMenuItem});
+            this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
+            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.actionsToolStripMenuItem.Text = "&Actions";
+            // 
+            // manufactureBreakdownsToolStripMenuItem
+            // 
+            this.manufactureBreakdownsToolStripMenuItem.Name = "manufactureBreakdownsToolStripMenuItem";
+            this.manufactureBreakdownsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.manufactureBreakdownsToolStripMenuItem.Text = "&Manufacture breakdowns";
+            this.manufactureBreakdownsToolStripMenuItem.Click += new System.EventHandler(this.manufactureBreakdownsToolStripMenuItem_Click);
+            // 
             // ofdThunder
             // 
             this.ofdThunder.DefaultExt = "thunder";
@@ -285,6 +305,13 @@
             this.sfdThunder.DefaultExt = "thunder";
             this.sfdThunder.Filter = "Thunder configs|*.thunder";
             this.sfdThunder.Title = "Import thunder configuration";
+            // 
+            // manufactureWAVsToolStripMenuItem
+            // 
+            this.manufactureWAVsToolStripMenuItem.Name = "manufactureWAVsToolStripMenuItem";
+            this.manufactureWAVsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.manufactureWAVsToolStripMenuItem.Text = "Manufacture &WAVs";
+            this.manufactureWAVsToolStripMenuItem.Click += new System.EventHandler(this.manufactureWAVsToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -338,6 +365,9 @@
         private System.Windows.Forms.Button cmdImport;
         private System.Windows.Forms.OpenFileDialog ofdThunder;
         private System.Windows.Forms.SaveFileDialog sfdThunder;
+        private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manufactureBreakdownsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manufactureWAVsToolStripMenuItem;
     }
 }
 

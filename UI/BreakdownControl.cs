@@ -29,6 +29,14 @@ namespace Thundergen.UI
 
         public bool Valid { get { return breakdownConfigControl1.Valid; } }
 
+        public DBMBreakdown.Configuration BreakdownConfiguration
+        {
+            get
+            {
+                return breakdownConfigControl1.Config;
+            }
+        }
+
         public BreakdownControl()
         {
             InitializeComponent();

@@ -99,7 +99,11 @@ namespace Thundergen.Thunder
 
             if (other.T0 < this.T0)
             {
-                throw new NotImplementedException("Cannot yet add a waveform beginning before waveform being mutated");
+                int newSamples = (int)Math.Ceiling((this.T0 - other.T0) * this.SampleRate);
+                var newOrigin = new Waveform(this.SampleRate, this.Samples.Length + newSamples, this.T0 - (double)newSamples / this.SampleRate);
+                Array.Copy(this.Samples, 0, newOrigin.Samples, newSamples, this.Samples.Length);
+                this.Samples = newOrigin.Samples;
+                this.T0 = newOrigin.T0;
             }
 
             int i0 = (int)Math.Round((other.T0 - this.T0) * this.SampleRate);
